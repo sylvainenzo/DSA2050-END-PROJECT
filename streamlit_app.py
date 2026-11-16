@@ -61,7 +61,28 @@ st.markdown(f"""
   .stTabs [aria-selected="true"] {{ background: {OAT_CARD}; color: {COFFEE};
       border-radius: 8px 8px 0 0; border-bottom: 3px solid {TANGERINE}; }}
   .note {{ background: {OAT_CARD}; border-left: 4px solid {COFFEE};
-      border-radius: 8px; padding: 12px 16px; margin: 8px 0; }}
+      border-radius: 10px; padding: 13px 17px; margin: 8px 0; line-height: 1.5; }}
+  .hero {{ background: linear-gradient(135deg, {COFFEE} 0%, #1A3346 100%);
+      border-radius: 16px; padding: 26px 30px 24px; margin: 2px 0 20px;
+      box-shadow: 0 6px 22px rgba(39,69,95,.18); }}
+  .hero h1 {{ color: {OAT}; font-size: 2.05rem; margin: 2px 0 6px; line-height: 1.15; }}
+  .hero p {{ color: #C9D6E0; font-size: 1.02rem; margin: 0; max-width: 62ch;
+      line-height: 1.5; }}
+  .hero .eyebrow {{ color: {TANGERINE}; margin-bottom: .35rem; }}
+  .unit {{ display: inline-block; background: {OAT_CARD}; border: 1px solid {OAT_LINE};
+      border-radius: 999px; padding: 3px 11px; margin: 0 6px 6px 0; font-size: .82rem;
+      color: {COFFEE}; font-weight: 600; }}
+  div[data-testid="stMetric"] {{ transition: transform .12s ease, box-shadow .12s ease; }}
+  div[data-testid="stMetric"]:hover {{ transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(39,69,95,.12); }}
+  details[data-testid="stExpander"] {{ background: {OAT_CARD};
+      border: 1px solid {OAT_LINE}; border-radius: 10px; }}
+  details[data-testid="stExpander"] summary {{ color: {COFFEE}; font-weight: 600; }}
+  .glossary td {{ padding: 7px 14px 7px 0; vertical-align: top; font-size: .92rem;
+      border-bottom: 1px solid {OAT_LINE}; }}
+  .glossary td.t {{ color: {COFFEE}; font-weight: 700; white-space: nowrap; }}
+  .glossary td.d {{ color: {INK}; line-height: 1.5; }}
+  hr {{ border-color: {OAT_LINE}; }}
   .stDataFrame {{ border: 1px solid {OAT_LINE}; border-radius: 8px; }}
   .stButton>button, .stDownloadButton>button {{ background: {COFFEE}; color: {OAT};
       border: none; border-radius: 8px; font-weight: 600; }}
@@ -98,6 +119,13 @@ def eyebrow(text):
 
 def note(text):
     st.markdown(f'<div class="note">{text}</div>', unsafe_allow_html=True)
+
+
+def hint(text):
+    """One plain-English line under a chart: what to look at, and what it means."""
+    st.markdown(f"<p style='color:{MUTED};font-size:.88rem;line-height:1.45;"
+                f"margin:-6px 0 14px 2px'><b style='color:{TANGERINE_INK}'>How to read it:</b> "
+                f"{text}</p>", unsafe_allow_html=True)
 
 
 # ----------------------------------------------------------------------------
@@ -199,12 +227,63 @@ if view.empty:
 # ----------------------------------------------------------------------------
 # 3. Header + KPIs
 # ----------------------------------------------------------------------------
-eyebrow("DSA 2050 - Option 06 - Applied Data Science Methodology")
-st.title("Water Supply Reliability Monitoring")
 st.markdown(
-    f"<p style='color:{MUTED};font-size:1.03rem;margin-top:-6px'>"
-    "Which NYCHA developments show recurring disruption or abnormal consumption - "
-    "and which simply are not being read?</p>", unsafe_allow_html=True)
+    "<div class='hero'><p class='eyebrow'>DSA 2050 - Option 06 - Applied Data Science "
+    "Methodology</p><h1>Water Supply Reliability Monitoring</h1>"
+    "<p>Which NYCHA developments show recurring disruption or abnormal consumption - "
+    "and which simply are not being read?</p></div>", unsafe_allow_html=True)
+
+st.markdown(
+    "<div style='margin-bottom:6px'>"
+    "<span class='unit'>1 HCF = 748 gallons = 2,832 litres</span>"
+    "<span class='unit'>HCF = hundred cubic feet, the unit on the water bill</span>"
+    "<span class='unit'>Use is reported as gallons per apartment per day</span>"
+    "<span class='unit'>Money is in US dollars</span></div>", unsafe_allow_html=True)
+
+with st.expander("Units and terms used throughout this dashboard"):
+    st.markdown("""<table class='glossary'>
+<tr><td class='t'>HCF</td><td class='d'>Hundred cubic feet, the unit New York bills water
+in. One HCF is <b>748 US gallons</b> (about 2,832 litres). The raw bills arrive in HCF;
+everything a person reads here is converted to gallons.</td></tr>
+<tr><td class='t'>HCF per day</td><td class='d'>A bill's water divided by the number of
+days it covers, so a 45-day bill and a 28-day bill can be compared fairly.</td></tr>
+<tr><td class='t'>Gallons per<br>apartment per day</td><td class='d'>The headline measure:
+water used, spread across the apartments and the days. A typical value here is about
+<b>203</b>. A figure near zero means the meters are not covering the homes, not that
+nobody is using water.</td></tr>
+<tr><td class='t'>Development</td><td class='d'>One public-housing estate - a named group
+of apartment buildings managed together, identified by a TDS number. This is the
+<i>zone</i> the decision question asks about. There are 104 of them here.</td></tr>
+<tr><td class='t'>Development-month</td><td class='d'>One development in one month - the
+unit of analysis, and what a single row of the data describes. 9,609 of them in
+total.</td></tr>
+<tr><td class='t'>Bill month</td><td class='d'>The month a bill is billed under, written
+2024-03. A billing period does not line up exactly with a calendar month, so timing is
+accurate to within a billing period, not to a day.</td></tr>
+<tr><td class='t'>Meter</td><td class='d'>The device on the incoming pipe that counts the
+water passing through it. It measures a pipe, not a place: a meter on one building says
+nothing about the building next door.</td></tr>
+<tr><td class='t'>Metering coverage</td><td class='d'><b>whole</b> - the meters cover the
+residential buildings, so per-apartment use is meaningful (70 developments).
+<b>partial</b> - only a shop or community-centre meter, so per-apartment use is
+meaningless and these are excluded from consumption analysis (29).
+<b>unknown</b> - too few real readings to tell.</td></tr>
+<tr><td class='t'>Measurement gap</td><td class='d'>A month where consumption was not
+really measured: <b>estimated</b> (the company guessed from past use),
+<b>zero_read</b> (the meter reported nothing), or <b>missing_bill</b> (no bill at
+all).</td></tr>
+<tr><td class='t'>Expected use</td><td class='d'>What the model predicts a development
+should use this month, based mostly on what it used last month.</td></tr>
+<tr><td class='t'>z</td><td class='d'>How far actual use sits from expected, measured in
+that development's own typical surprise. z = 4 means four times its normal wobble. The
+bars in |z| mean direction is ignored: too much water may be a leak, too little may be a
+supply failure.</td></tr>
+<tr><td class='t'>Lift</td><td class='d'>How much more often a flag lands on a development
+that residents were also complaining about, compared with chance. Lift 3.4 means
+3.4 times more often.</td></tr>
+<tr><td class='t'>Charges</td><td class='d'>The money on the bill, in US dollars. Water
+used and money charged are not the same thing, because rates change over time.</td></tr>
+</table>""", unsafe_allow_html=True)
 
 whole = view[(view["gap_type"] == "actual") & (view["metering"] == "whole")]
 k1, k2, k3, k4, k5 = st.columns(5)
@@ -212,8 +291,10 @@ k1.metric("Developments", f"{view['tds'].nunique()}")
 k2.metric("Development-months", f"{len(view):,}")
 k3.metric("Measurement gaps", f"{100 * view['is_gap'].mean():.1f}%",
           help="Share of development-months that are estimated, missing or zero reads.")
-k4.metric("Median use", f"{whole['gal_per_apt_day'].median():.0f}" if len(whole) else "-",
-          help="Gallons per apartment per day, whole-metered developments, actual reads.")
+k4.metric("Median use (gal/apt/day)",
+          f"{whole['gal_per_apt_day'].median():.0f}" if len(whole) else "-",
+          help="Gallons per apartment per day, whole-metered developments, actual reads. "
+               "Bills arrive in HCF; 1 HCF = 748 gallons.")
 k5.metric("Estimated bills",
           f"{100 * (view['gap_type'] == 'estimated').mean():.1f}%")
 
@@ -276,7 +357,7 @@ with tabs[0]:
                  alt.Tooltip("developments:Q", title="Developments billed")])
     use_line = alt.Chart(med_use).mark_line(color=COFFEE, strokeWidth=2).encode(
         x="date:T",
-        y=alt.Y("gal_per_apt_day:Q", title="Median gal / apartment / day"),
+        y=alt.Y("gal_per_apt_day:Q", title="Median gallons per apartment per day"),
         tooltip=[alt.Tooltip("date:T", title="Month"),
                  alt.Tooltip("gal_per_apt_day:Q", format=".0f", title="Median use")])
     st.altair_chart(
@@ -286,6 +367,10 @@ with tabs[0]:
             gap_area.properties(height=130, width="container",
                                 title="Share of development-months that are a measurement gap"),
         ).resolve_scale(x="shared"), width="stretch")
+    hint("<b>Top line</b> = how much water a typical apartment uses per day, one point "
+         "per month. <b>Bottom orange band</b> = how many developments were not properly "
+         "read that month. When the orange rises and the line dips at the same time, the "
+         "fall in water is not real - it is just fewer meters being read.")
     note("Read the two panels together: a dip in use that lines up with a spike in "
          "gaps is a <b>measurement artefact</b>, not a real fall in consumption.")
 
@@ -310,6 +395,11 @@ with tabs[1]:
                      alt.Tooltip("n:Q", title="Development-months")],
         ).properties(height=330, title="Real reads vs measurement gaps, by year"),
         width="stretch")
+    c1.markdown(f"<p style='color:{MUTED};font-size:.88rem;margin:-6px 0 10px 2px'>"
+                f"<b style='color:{TANGERINE_INK}'>How to read it:</b> each bar is one year, "
+                "split into what kind of month it was. Dark blue is a real meter reading. "
+                "Everything else is a gap. The dark blue shrinking year by year is the "
+                "central finding of the project.</p>", unsafe_allow_html=True)
 
     counts = (view["gap_type"].value_counts().rename_axis("gap_type")
               .reset_index(name="development_months"))
@@ -337,6 +427,9 @@ with tabs[1]:
             tooltip=["development:N", "borough:N", "months:Q", "gap_months:Q",
                      alt.Tooltip("gap_%:Q", format=".1f")],
         ).properties(height=430), width="stretch")
+    hint("The 20 developments whose meters are read least often. A long bar means most of "
+         "that development's bills were guessed rather than measured, so nobody really "
+         "knows what it is using. These are the first places to send a meter technician.")
 
 # ----------------------------------------------------------------------------
 # Tab 3 - Consumption
@@ -358,13 +451,24 @@ with tabs[2]:
             ).properties(height=300,
                          title=f"Distribution (median {g['gal_per_apt_day'].median():.0f} gal/apt/day)"),
             width="stretch")
+        c1.markdown(f"<p style='color:{MUTED};font-size:.88rem;margin:-6px 0 10px 2px'>"
+                    f"<b style='color:{TANGERINE_INK}'>How to read it:</b> how common each "
+                    "level of water use is. Most months sit in the middle hump; the thin "
+                    "tails on either side are the unusual months. The axis is squeezed "
+                    "(log scale) so the rare extremes stay visible.</p>",
+                    unsafe_allow_html=True)
         c2.altair_chart(
             alt.Chart(g).mark_boxplot(color=COFFEE_SOFT, outliers=False).encode(
                 x=alt.X("borough:N", title=None),
-                y=alt.Y("gal_per_apt_day:Q", title="Gal / apartment / day",
+                y=alt.Y("gal_per_apt_day:Q", title="Gallons per apartment per day",
                         scale=alt.Scale(type="log")),
             ).properties(height=300, title="By borough (outliers hidden)"),
             width="stretch")
+        c2.markdown(f"<p style='color:{MUTED};font-size:.88rem;margin:-6px 0 10px 2px'>"
+                    f"<b style='color:{TANGERINE_INK}'>How to read it:</b> each box covers "
+                    "the middle half of that borough's months, with the line inside at the "
+                    "typical value. Boxes that overlap heavily mean the boroughs are not "
+                    "really different from each other.</p>", unsafe_allow_html=True)
 
         ci = load_report("bootstrap_ci_by_borough")
         if ci is not None:
@@ -403,6 +507,11 @@ with tabs[2]:
                 x=alt.X("month_of_year:O", title="Calendar month"),
                 y=alt.Y("gal:Q", title="Median gal/apt/day"),
             ).properties(height=280, title="Seasonal pattern"), width="stretch")
+        c3.markdown(f"<p style='color:{MUTED};font-size:.88rem;margin:-6px 0 10px 2px'>"
+                    f"<b style='color:{TANGERINE_INK}'>How to read it:</b> all the Januarys "
+                    "together, all the Februarys together, and so on. A flat row of boxes "
+                    "means the time of year barely matters for water use.</p>",
+                    unsafe_allow_html=True)
         r = mm[["temp", "gal"]].corr().iloc[0, 1] if len(mm) > 2 else float("nan")
         c4.altair_chart(
             alt.Chart(mm).mark_circle(size=55, color=COFFEE, opacity=.75).encode(
@@ -412,6 +521,12 @@ with tabs[2]:
             ).properties(height=280,
                          title=f"Use vs temperature (r = {r:.2f}; association, not causation)"),
             width="stretch")
+        c4.markdown(f"<p style='color:{MUTED};font-size:.88rem;margin:-6px 0 10px 2px'>"
+                    f"<b style='color:{TANGERINE_INK}'>How to read it:</b> each dot is one "
+                    "month: temperature across, water use up. A shapeless cloud means hot "
+                    "months are no thirstier than cold ones - weather does not help predict "
+                    "this, which is why the model does not lean on it.</p>",
+                    unsafe_allow_html=True)
 
 # ----------------------------------------------------------------------------
 # Tab 4 - Model and rules
@@ -459,6 +574,9 @@ with tabs[3]:
                                                           range=[COFFEE_SOFT, TANGERINE])),
                 tooltip=["rule:N", "threshold:N", "flag_rate_%:Q", "lift:Q"],
             ).properties(height=320), width="stretch")
+        hint("Every dot is one possible threshold setting. Right = more months flagged = "
+             "more work for crews. Up = flags land on genuinely troubled developments more "
+             "often. The best settings sit high and to the left: few flags, mostly right.")
         st.dataframe(sens, hide_index=True, width="stretch")
 
     gvf = load_report("gap_vs_flag")
@@ -586,7 +704,7 @@ with tabs[5]:
         actual = d[d["gap_type"] == "actual"]
         line = alt.Chart(actual).mark_line(color=COFFEE, strokeWidth=2).encode(
             x=alt.X("date:T", title="Bill month"),
-            y=alt.Y("hcf_per_day:Q", title="HCF per day"))
+            y=alt.Y("hcf_per_day:Q", title="Water used (HCF per day; 1 HCF = 748 gal)"))
         pts = alt.Chart(d).mark_point(filled=True, size=70).encode(
             x="date:T", y="hcf_per_day:Q",
             color=alt.Color("gap_type:N", title="Month label",
@@ -612,6 +730,11 @@ with tabs[5]:
             height=380, title=f"{dev}: actual (solid), expected (dashed), "
                               f"flags (triangles) at |z| > {K}"),
             width="stretch")
+        hint("The <b>solid line</b> is what this development actually used. The "
+             "<b>dashed line</b> is what the model expected. Dot colour says whether that "
+             "month was really measured or only guessed. An <b>orange triangle</b> marks a "
+             "month far enough from expected to be worth a visit. Big gaps between solid "
+             "and dashed, month after month, are the pattern you are hunting.")
 
         st.dataframe(
             d[["revenue_month", "gap_type", "n_meters", "share_estimated",
