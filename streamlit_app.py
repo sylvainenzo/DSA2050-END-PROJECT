@@ -24,21 +24,23 @@ sys.path.insert(0, str(ROOT / "src"))
 PANEL = ROOT / "data" / "processed" / "panel_labeled.csv"
 REPORTS = ROOT / "reports"
 
-OAT = "#F6EFE2"        # oat cream  - page background
-OAT_CARD = "#EFE5D2"   # oat cream  - cards and table headers
-OAT_LINE = "#DCCFB4"   # oat cream  - borders
-COFFEE = "#27455F"     # coffee blue - headings, primary series
-COFFEE_SOFT = "#5B7C97"# coffee blue - secondary series
-TANGERINE = "#F28C28"  # tangerine  - highlights, gaps, alerts
-TANGERINE_INK = "#B35C00"  # tangerine, darkened for text on cream
-INK = "#1C2B3A"        # body text
-MUTED = "#6B7B8C"
+OAT = "#F7F1E3"        # oat cream  - page background
+OAT_CARD = "#FFFBF2"   # oat cream  - raised cards (lighter than page = lift)
+OAT_LINE = "#1B3047"   # hairline borders: ink, not beige - this is the "sharp"
+OAT_WARM = "#EDE2CC"   # oat cream  - recessed bands
+COFFEE = "#0E2638"     # coffee blue - near-black navy, maximum contrast on cream
+COFFEE_MID = "#1B4D6B" # coffee blue - mid tone for series
+COFFEE_SOFT = "#4A87A8"# coffee blue - light tone for series
+TANGERINE = "#FF6B00"  # tangerine  - full-strength, no muddiness
+TANGERINE_INK = "#C44A00"  # tangerine, darkened for text on cream
+INK = "#0E2638"        # body text
+MUTED = "#5E7083"
 
 GAP_COLORS = {"actual": COFFEE, "estimated": TANGERINE,
-              "zero_read": "#9E2A2B", "missing_bill": "#B9AFA0"}
+              "zero_read": "#C2003C", "missing_bill": "#9A8D78"}
 ACTION_COLORS = {"Fix metering first (recurring gaps)": TANGERINE,
-                 "Inspect for leaks / supply issues (recurring abnormal use)": "#9E2A2B",
-                 "Monitor": COFFEE}
+                 "Inspect for leaks / supply issues (recurring abnormal use)": "#C2003C",
+                 "Monitor": COFFEE_SOFT}
 
 st.set_page_config(page_title="Water Supply Reliability - DSA 2050",
                    page_icon="|", layout="wide")
@@ -46,49 +48,77 @@ st.set_page_config(page_title="Water Supply Reliability - DSA 2050",
 st.markdown(f"""
 <style>
   .stApp {{ background: {OAT}; color: {INK}; }}
-  section[data-testid="stSidebar"] {{ background: {OAT_CARD};
-      border-right: 1px solid {OAT_LINE}; }}
-  h1, h2, h3, h4 {{ color: {COFFEE}; font-weight: 700; }}
-  .eyebrow {{ color: {TANGERINE_INK}; font-size: 0.78rem; font-weight: 700;
-      letter-spacing: .14em; text-transform: uppercase; margin-bottom: .2rem; }}
-  div[data-testid="stMetric"] {{ background: {OAT_CARD}; border: 1px solid {OAT_LINE};
-      border-left: 5px solid {TANGERINE}; border-radius: 10px; padding: 14px 16px; }}
-  div[data-testid="stMetricValue"] {{ color: {COFFEE}; font-size: 1.9rem; }}
-  div[data-testid="stMetricLabel"] {{ color: {MUTED}; }}
-  .stTabs [data-baseweb="tab-list"] {{ gap: 4px; border-bottom: 1px solid {OAT_LINE}; }}
+
+  /* --- sidebar: inverted, high contrast --- */
+  section[data-testid="stSidebar"] {{ background: {COFFEE};
+      border-right: 3px solid {TANGERINE}; }}
+  section[data-testid="stSidebar"] * {{ color: {OAT} !important; }}
+  section[data-testid="stSidebar"] label p {{ font-weight: 600; font-size: .9rem; }}
+  section[data-testid="stSidebar"] hr {{ border-color: rgba(247,241,227,.22); }}
+
+  h1, h2, h3, h4 {{ color: {COFFEE}; font-weight: 800; letter-spacing: -.012em; }}
+  h2, h3 {{ border-bottom: 2px solid {COFFEE}; padding-bottom: 6px;
+      display: inline-block; }}
+  .eyebrow {{ color: {TANGERINE_INK}; font-size: .74rem; font-weight: 800;
+      letter-spacing: .18em; text-transform: uppercase; margin-bottom: .2rem; }}
+
+  /* --- KPI cards: squared, ink-ruled, tangerine spine --- */
+  div[data-testid="stMetric"] {{ background: {OAT_CARD}; border: 2px solid {COFFEE};
+      border-left: 7px solid {TANGERINE}; border-radius: 0; padding: 15px 17px;
+      box-shadow: 4px 4px 0 {COFFEE}; transition: transform .11s ease,
+      box-shadow .11s ease; }}
+  div[data-testid="stMetric"]:hover {{ transform: translate(-2px, -2px);
+      box-shadow: 7px 7px 0 {TANGERINE}; }}
+  div[data-testid="stMetricValue"] {{ color: {COFFEE}; font-size: 2rem;
+      font-weight: 800; letter-spacing: -.02em; }}
+  div[data-testid="stMetricLabel"] {{ color: {MUTED}; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .06em; font-size: .72rem; }}
+
+  /* --- tabs: hard-edged, tangerine on select --- */
+  .stTabs [data-baseweb="tab-list"] {{ gap: 0; border-bottom: 2px solid {COFFEE}; }}
   .stTabs [data-baseweb="tab"] {{ background: transparent; color: {MUTED};
-      font-weight: 600; padding: 8px 14px; }}
-  .stTabs [aria-selected="true"] {{ background: {OAT_CARD}; color: {COFFEE};
-      border-radius: 8px 8px 0 0; border-bottom: 3px solid {TANGERINE}; }}
-  .note {{ background: {OAT_CARD}; border-left: 4px solid {COFFEE};
-      border-radius: 10px; padding: 13px 17px; margin: 8px 0; line-height: 1.5; }}
-  .hero {{ background: linear-gradient(135deg, {COFFEE} 0%, #1A3346 100%);
-      border-radius: 16px; padding: 26px 30px 24px; margin: 2px 0 20px;
-      box-shadow: 0 6px 22px rgba(39,69,95,.18); }}
-  .hero h1 {{ color: {OAT}; font-size: 2.05rem; margin: 2px 0 6px; line-height: 1.15; }}
-  .hero p {{ color: #C9D6E0; font-size: 1.02rem; margin: 0; max-width: 62ch;
+      font-weight: 700; padding: 9px 17px; border-radius: 0;
+      text-transform: uppercase; letter-spacing: .05em; font-size: .78rem; }}
+  .stTabs [aria-selected="true"] {{ background: {COFFEE}; color: {OAT} !important;
+      border-radius: 0; }}
+  .stTabs [aria-selected="true"] p {{ color: {OAT} !important; }}
+
+  /* --- hero: flat ink block, tangerine rule --- */
+  .hero {{ background: {COFFEE}; border-radius: 0; padding: 30px 34px 28px;
+      margin: 2px 0 22px; border-bottom: 7px solid {TANGERINE}; }}
+  .hero h1 {{ color: {OAT}; font-size: 2.4rem; margin: 3px 0 8px; line-height: 1.08;
+      letter-spacing: -.025em; border: none; display: block; }}
+  .hero p {{ color: #AFC4D4; font-size: 1.04rem; margin: 0; max-width: 64ch;
       line-height: 1.5; }}
-  .hero .eyebrow {{ color: {TANGERINE}; margin-bottom: .35rem; }}
-  .unit {{ display: inline-block; background: {OAT_CARD}; border: 1px solid {OAT_LINE};
-      border-radius: 999px; padding: 3px 11px; margin: 0 6px 6px 0; font-size: .82rem;
-      color: {COFFEE}; font-weight: 600; }}
-  div[data-testid="stMetric"] {{ transition: transform .12s ease, box-shadow .12s ease; }}
-  div[data-testid="stMetric"]:hover {{ transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(39,69,95,.12); }}
+  .hero .eyebrow {{ color: {TANGERINE}; margin-bottom: .4rem; }}
+
+  .unit {{ display: inline-block; background: {COFFEE}; border-radius: 0;
+      padding: 5px 13px; margin: 0 5px 6px 0; font-size: .78rem; color: {OAT};
+      font-weight: 700; letter-spacing: .02em; }}
+  .unit:nth-child(2n) {{ background: {TANGERINE_INK}; }}
+
+  .note {{ background: {OAT_WARM}; border-left: 6px solid {TANGERINE};
+      border-radius: 0; padding: 14px 18px; margin: 10px 0; line-height: 1.5; }}
+
+  .stDataFrame {{ border: 2px solid {COFFEE}; border-radius: 0; }}
+  .stButton>button, .stDownloadButton>button {{ background: {TANGERINE}; color: #FFF;
+      border: 2px solid {COFFEE}; border-radius: 0; font-weight: 800;
+      text-transform: uppercase; letter-spacing: .06em; font-size: .78rem;
+      box-shadow: 3px 3px 0 {COFFEE}; }}
+  .stButton>button:hover, .stDownloadButton>button:hover {{ background: {COFFEE};
+      color: {OAT}; box-shadow: 3px 3px 0 {TANGERINE}; }}
+
   details[data-testid="stExpander"] {{ background: {OAT_CARD};
-      border: 1px solid {OAT_LINE}; border-radius: 10px; }}
-  details[data-testid="stExpander"] summary {{ color: {COFFEE}; font-weight: 600; }}
-  .glossary td {{ padding: 7px 14px 7px 0; vertical-align: top; font-size: .92rem;
-      border-bottom: 1px solid {OAT_LINE}; }}
-  .glossary td.t {{ color: {COFFEE}; font-weight: 700; white-space: nowrap; }}
+      border: 2px solid {COFFEE}; border-radius: 0; }}
+  details[data-testid="stExpander"] summary {{ color: {COFFEE}; font-weight: 700; }}
+
+  .glossary td {{ padding: 8px 15px 8px 0; vertical-align: top; font-size: .92rem;
+      border-bottom: 1px solid {OAT_WARM}; }}
+  .glossary td.t {{ color: {TANGERINE_INK}; font-weight: 800; white-space: nowrap; }}
   .glossary td.d {{ color: {INK}; line-height: 1.5; }}
-  hr {{ border-color: {OAT_LINE}; }}
-  .stDataFrame {{ border: 1px solid {OAT_LINE}; border-radius: 8px; }}
-  .stButton>button, .stDownloadButton>button {{ background: {COFFEE}; color: {OAT};
-      border: none; border-radius: 8px; font-weight: 600; }}
-  .stButton>button:hover, .stDownloadButton>button:hover {{ background: {TANGERINE_INK};
-      color: {OAT}; }}
-  a {{ color: {TANGERINE_INK}; }}
+
+  hr {{ border-color: {COFFEE}; }}
+  a {{ color: {TANGERINE_INK}; font-weight: 600; }}
 </style>""", unsafe_allow_html=True)
 
 
@@ -98,11 +128,12 @@ def chart_theme():
         "view": {"stroke": "transparent"},
         "font": "Inter, Helvetica, Arial, sans-serif",
         "title": {"color": COFFEE, "fontSize": 14, "anchor": "start", "fontWeight": 600},
-        "axis": {"labelColor": INK, "titleColor": MUTED, "gridColor": OAT_LINE,
-                 "domainColor": OAT_LINE, "tickColor": OAT_LINE, "labelFontSize": 11,
-                 "titleFontSize": 11},
-        "legend": {"labelColor": INK, "titleColor": MUTED, "labelFontSize": 11},
-        "range": {"category": [COFFEE, TANGERINE, COFFEE_SOFT, "#9E2A2B", "#B9AFA0"]},
+        "axis": {"labelColor": INK, "titleColor": COFFEE, "gridColor": "#E0D4BC",
+                 "domainColor": COFFEE, "tickColor": COFFEE, "labelFontSize": 11,
+                 "titleFontSize": 11, "titleFontWeight": 700, "domainWidth": 1.5},
+        "legend": {"labelColor": INK, "titleColor": COFFEE, "labelFontSize": 11,
+                   "titleFontWeight": 700},
+        "range": {"category": [COFFEE, TANGERINE, COFFEE_SOFT, "#C2003C", "#9A8D78"]},
     }}
 
 
@@ -458,7 +489,7 @@ with tabs[2]:
                     "(log scale) so the rare extremes stay visible.</p>",
                     unsafe_allow_html=True)
         c2.altair_chart(
-            alt.Chart(g).mark_boxplot(color=COFFEE_SOFT, outliers=False).encode(
+            alt.Chart(g).mark_boxplot(color=COFFEE_MID, outliers=False).encode(
                 x=alt.X("borough:N", title=None),
                 y=alt.Y("gal_per_apt_day:Q", title="Gallons per apartment per day",
                         scale=alt.Scale(type="log")),
@@ -503,7 +534,7 @@ with tabs[2]:
         mm["month_of_year"] = pd.to_datetime(mm["revenue_month"] + "-01").dt.month
         c3, c4 = st.columns(2)
         c3.altair_chart(
-            alt.Chart(mm).mark_boxplot(color=COFFEE_SOFT).encode(
+            alt.Chart(mm).mark_boxplot(color=COFFEE_MID).encode(
                 x=alt.X("month_of_year:O", title="Calendar month"),
                 y=alt.Y("gal:Q", title="Median gal/apt/day"),
             ).properties(height=280, title="Seasonal pattern"), width="stretch")
@@ -718,7 +749,7 @@ with tabs[5]:
         layers = [line, pts]
         if MODEL_OK and d["expected_hcf_day"].notna().any():
             layers.insert(1, alt.Chart(d).mark_line(
-                color=COFFEE_SOFT, strokeDash=[5, 4]).encode(
+                color=TANGERINE_INK, strokeDash=[6, 4]).encode(
                 x="date:T", y=alt.Y("expected_hcf_day:Q")))
         flags = d[d["flagged"].fillna(False)]
         if len(flags):
