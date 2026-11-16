@@ -1,5 +1,5 @@
-# Project Charter — Water Supply Reliability Monitoring (Option 06)
-DSA 2050 · Group members: ________ / ________ / ________ · Date: ________ · Repo: ________
+# Project Charter — Water Supply Reliability Monitoring 
+
 
 ## 1. Problem and stakeholder
 NYCHA manages hundreds of public-housing developments in New York City and pays a monthly water bill for each meter. Leaks, broken meters and supply disruptions waste water and money, and leave residents without service. Crews are limited, so they must go where problems are real and recurring.
