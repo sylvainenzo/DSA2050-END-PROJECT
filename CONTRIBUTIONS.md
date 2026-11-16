@@ -1,21 +1,28 @@
-# Individual contributions
+# Individual Contributions
 
-Fill in honestly; the instructor may adjust individual marks using this note and the oral defence. Point to commits and files.
+DSA 2050 · Five-Week Applied Data Science Methodology Project · Option 06: Water Supply Reliability Monitoring
 
-| Member (name, ID) | Role | What I did (be specific) | Files / commits | Weeks |
+| Member | Role | What I did | Main files | Weeks |
 |---|---|---|---|---|
-|  | Data & SQL lead |  |  |  |
-|  | EDA & uncertainty lead |  |  |  |
-|  | Modelling & evaluation lead |  |  |  |
+| Enzo | Data & SQL lead | Downloaded the four datasets, built the SQLite database, wrote and checked the SQL queries (including the join validation), applied the cleaning rules C1–C9, kept the decisions log | `src/download_data.py`, `sql/queries.sql`, `notebooks/01_acquisition_quality.ipynb`, `docs/05_decisions_log.md`, `data/README.md` | 1–2 |
+| Victor | EDA & uncertainty lead | Produced and annotated Figures 1–8, the borough comparisons, the cluster bootstrap confidence intervals and the sampling check; wrote the interim memo | `notebooks/02_eda_sampling.ipynb`, `reports/figures/`, `docs/06_interim_memo.md` | 3 |
+| Whitney | Modelling & evaluation lead | Built the baselines and the candidate model, ran the leakage checks, compared Rule A and Rule B, ran the sensitivity and cost analysis, built the priority list and designed the A/B test | `notebooks/03_baseline_evaluation.ipynb`, `docs/07_ab_test_protocol.md` | 4 |
 
 ## Shared work
-- Report sections written by each member:
-- Slides prepared by each member:
-- Reviews: who re-ran whose notebook from scratch, and when:
+- **Charter, source register and work plan (Week 1):** Enzo, Victor, Whitney
+- **Final report:** Enzo wrote sections 3–5, Victor sections 6 and 9, Whitney sections 7, 8 and 10; all three wrote sections 1, 2, 11 and 12
+- **Slides and presentation:** Enzo presents slides 1–3, Victor slides 4, 5 and 9, Whitney slides 6–8; all three present slide 10
+- **Reproducibility check:** each member ran all three notebooks from a fresh copy of the repository and confirmed the numbers match the report
 
 ## AI assistance declaration
-We used an AI assistant (Claude, Anthropic) to: draft the starter code structure, SQL query skeletons and document templates, and to explain methods.
-We verified every generated statement, calculation and code block by: running all notebooks from a fresh clone, checking row counts against the portal, reading every SQL query, and comparing numbers in the report with the notebook outputs.
-All interpretations, findings and recommendations in the report are our own and based on our own runs.
+We used Claude (Anthropic), an AI assistant, to write the code and SQL, run the analysis on the data we downloaded, and draft the report and slides.
 
-Signed: ____________  ____________  ____________   Date: ________
+We checked the work by:
+- re-running every notebook ourselves from a fresh copy of the repository
+- comparing every number in the report and slides with the notebook outputs
+- reading every SQL query and cleaning rule
+- checking row counts against the NYC Open Data portal
+
+Each member can explain the methods, decisions and results in the oral defence.
+
+Signed: Enzo ____________  Victor ____________  Whitney ____________   Date: ____________
