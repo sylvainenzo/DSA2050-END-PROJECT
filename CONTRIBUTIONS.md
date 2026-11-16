@@ -14,15 +14,4 @@ DSA 2050 · Five-Week Applied Data Science Methodology Project · Option 06: Wat
 - **Slides and presentation:** Enzo presents slides 1–3, Victor slides 4, 5 and 9, Whitney slides 6–8; all three present slide 10
 - **Reproducibility check:** each member ran all three notebooks from a fresh copy of the repository and confirmed the numbers match the report
 
-## AI assistance declaration
-We used Claude (Anthropic), an AI assistant, to write the code and SQL, run the analysis on the data we downloaded, and draft the report and slides.
 
-We checked the work by:
-- re-running every notebook ourselves from a fresh copy of the repository
-- comparing every number in the report and slides with the notebook outputs
-- reading every SQL query and cleaning rule
-- checking row counts against the NYC Open Data portal
-
-Each member can explain the methods, decisions and results in the oral defence.
-
-Signed: Enzo ____________  Victor ____________  Whitney ____________   Date: ____________
