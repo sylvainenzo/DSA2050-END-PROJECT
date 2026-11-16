@@ -1,0 +1,4 @@
+effect_to_detect,log_effect,sigma_dev_6m_resid,developments_per_arm,total_developments
+10% less water,0.105,0.178,45,90
+15% less water,0.163,0.178,19,38
+20% less water,0.223,0.178,11,22

@@ -1,0 +1,33 @@
+table,column,dtype,non_null_%,example,description
+panel_labeled,tds,int64,100.0,1,"Unique NYCHA development ID (PK in developments, FK in bills)"
+panel_labeled,revenue_month,str,100.0,2021-01,Bill month YYYY-MM
+panel_labeled,borough,str,100.0,MANHATTAN,Borough (zone level 2)
+panel_labeled,n_meters,float64,91.1,1.0,Meters billed that month
+panel_labeled,n_est_meters,float64,91.1,0.0,Meters with an estimated (not read) bill
+panel_labeled,n_zero_meters,float64,91.1,0.0,
+panel_labeled,hcf,float64,91.1,14.7,"Total consumption, hundred cubic feet"
+panel_labeled,hcf_per_day,float64,91.1,0.49,Sum over meters of HCF / billing days
+panel_labeled,charges,float64,91.1,38.07,"Water & sewer charges, USD"
+panel_labeled,development,str,99.8,FIRST HOUSES,
+panel_labeled,apartments,float64,99.8,126.0,Total apartments (Data Book)
+panel_labeled,population,float64,99.8,116.0,
+panel_labeled,res_buildings,float64,99.8,8.0,
+panel_labeled,temp_mean,float64,91.1,0.31,"Mean daily temperature, deg C"
+panel_labeled,temp_max,float64,91.1,10.1,
+panel_labeled,temp_min,float64,91.1,-9.4,
+panel_labeled,precip_mm,float64,91.1,54.2,"Monthly precipitation, mm"
+panel_labeled,snow_cm,float64,91.1,6.1,
+panel_labeled,freeze_days,float64,91.1,5.0,
+panel_labeled,hot_days,float64,91.1,0.0,
+panel_labeled,complaints_total,float64,91.1,465.0,All 311 Water System complaints in borough-month
+panel_labeled,c_supply,float64,91.1,52.0,"311 supply complaints (no water, low pressure, main break), borough-month"
+panel_labeled,c_no_water,float64,91.1,24.0,
+panel_labeled,c_low_pressure,float64,91.1,3.0,
+panel_labeled,c_main_break,float64,91.1,25.0,
+panel_labeled,c_leak,float64,91.1,97.0,
+panel_labeled,c_hydrant,float64,91.1,229.0,
+panel_labeled,share_estimated,float64,91.1,0.0,n_est_meters / n_meters
+panel_labeled,gap_type,str,100.0,actual,actual / estimated / zero_read / missing_bill
+panel_labeled,is_gap,int64,100.0,0,
+panel_labeled,gal_per_apt_day,float64,90.8,2.908888888888889,hcf_per_day x 748 / apartments
+panel_labeled,metering,str,100.0,partial,whole / partial / unknown meter coverage of the development

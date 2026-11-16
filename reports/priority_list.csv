@@ -1,0 +1,61 @@
+tds,development,borough,metering,months,gap_months,apartments,high_flags,low_flags,abnormal_months,action
+143,REHAB PROGRAM (COLLEGE POINT),QUEENS,whole,29,0,13.0,4.0,4.0,8.0,Inspect for leaks / supply issues (recurring abnormal use)
+37,RANGEL,MANHATTAN,partial,29,0,984.0,2.0,3.0,5.0,Inspect for leaks / supply issues (recurring abnormal use)
+97,TAFT,MANHATTAN,partial,29,5,1470.0,1.0,3.0,4.0,Inspect for leaks / supply issues (recurring abnormal use)
+83,MARLBORO,BROOKLYN,partial,29,1,1765.0,1.0,3.0,4.0,Inspect for leaks / supply issues (recurring abnormal use)
+27,SMITH,MANHATTAN,partial,29,0,1935.0,2.0,2.0,4.0,Inspect for leaks / supply issues (recurring abnormal use)
+28,MELROSE,BRONX,partial,29,0,1023.0,2.0,2.0,4.0,Inspect for leaks / supply issues (recurring abnormal use)
+339,HOWARD AVENUE,BROOKLYN,whole,21,8,150.0,2.0,1.0,3.0,Fix metering first (recurring gaps)
+352,RALPH AVENUE REHAB,BROOKLYN,whole,22,8,118.0,2.0,1.0,3.0,Fix metering first (recurring gaps)
+114,STAPLETON,STATEN ISLAND,partial,29,1,693.0,2.0,1.0,3.0,Inspect for leaks / supply issues (recurring abnormal use)
+514,WHITMAN,BROOKLYN,partial,29,0,1659.0,1.0,2.0,3.0,Inspect for leaks / supply issues (recurring abnormal use)
+279,SHELTON HOUSE,QUEENS,whole,29,3,155.0,0.0,2.0,2.0,Monitor
+304,EAST 165TH STREET-BRYANT AVENUE,BRONX,whole,29,2,111.0,1.0,1.0,2.0,Monitor
+91,BAISLEY PARK,QUEENS,whole,29,0,386.0,1.0,1.0,2.0,Monitor
+205,FENIMORE-LEFFERTS,BROOKLYN,whole,21,0,36.0,1.0,1.0,2.0,Monitor
+337,LOWER EAST SIDE II,MANHATTAN,whole,29,0,188.0,1.0,1.0,2.0,Monitor
+351,PARK ROCK REHAB,BROOKLYN,whole,11,0,134.0,1.0,1.0,2.0,Monitor
+365,HOWARD AVENUE-PARK PLACE,BROOKLYN,whole,21,0,156.0,1.0,1.0,2.0,Monitor
+377,SAMUEL (CITY),MANHATTAN,whole,21,0,664.0,1.0,1.0,2.0,Monitor
+356,UNION AVENUE-EAST 166TH STREET,BRONX,whole,29,16,120.0,0.0,1.0,1.0,Fix metering first (recurring gaps)
+517,REHAB PROGRAM (WISE REHAB),MANHATTAN,whole,29,0,40.0,0.0,1.0,1.0,Monitor
+14,INGERSOLL,BROOKLYN,partial,29,29,1840.0,0.0,0.0,0.0,Fix metering first (recurring gaps)
+292,LOWER EAST SIDE REHAB (GROUP 5),MANHATTAN,whole,29,29,55.0,0.0,0.0,0.0,Fix metering first (recurring gaps)
+335,CLAREMONT REHAB (GROUP 4),BRONX,whole,29,29,150.0,0.0,0.0,0.0,Fix metering first (recurring gaps)
+5,QUEENSBRIDGE SOUTH,QUEENS,partial,29,28,1604.0,0.0,0.0,0.0,Fix metering first (recurring gaps)
+61,VAN DYKE I,BROOKLYN,partial,29,28,1603.0,0.0,0.0,0.0,Fix metering first (recurring gaps)
+111,DREW-HAMILTON,MANHATTAN,partial,29,28,1217.0,0.0,0.0,0.0,Fix metering first (recurring gaps)
+316,INTERNATIONAL TOWER,QUEENS,whole,29,28,159.0,0.0,0.0,0.0,Fix metering first (recurring gaps)
+51,OCEAN BAY APARTMENTS (OCEANSIDE),QUEENS,partial,29,27,418.0,0.0,0.0,0.0,Fix metering first (recurring gaps)
+307,CLAREMONT REHAB (GROUP 2),BRONX,partial,29,27,107.0,0.0,0.0,0.0,Fix metering first (recurring gaps)
+326,LOWER EAST SIDE I INFILL,MANHATTAN,whole,29,27,189.0,0.0,0.0,0.0,Fix metering first (recurring gaps)
+343,UPACA (SITE 5),MANHATTAN,whole,29,27,200.0,0.0,0.0,0.0,Fix metering first (recurring gaps)
+359,154 WEST 84TH STREET,MANHATTAN,whole,29,27,35.0,0.0,0.0,0.0,Fix metering first (recurring gaps)
+4,RED HOOK EAST,BROOKLYN,partial,29,26,1407.0,0.0,0.0,0.0,Fix metering first (recurring gaps)
+48,RAVENSWOOD,QUEENS,partial,29,22,2166.0,0.0,0.0,0.0,Fix metering first (recurring gaps)
+505,QUEENSBRIDGE NORTH,QUEENS,partial,29,19,1543.0,0.0,0.0,0.0,Fix metering first (recurring gaps)
+149,POLO GROUNDS TOWERS,MANHATTAN,partial,29,17,1614.0,0.0,0.0,0.0,Fix metering first (recurring gaps)
+516,REHAB PROGRAM (TAFT REHABS),MANHATTAN,whole,29,17,156.0,0.0,0.0,0.0,Fix metering first (recurring gaps)
+183,MELTZER TOWER,MANHATTAN,whole,15,15,231.0,0.0,0.0,0.0,Fix metering first (recurring gaps)
+355,UPACA (SITE 6),MANHATTAN,whole,29,15,150.0,0.0,0.0,0.0,Fix metering first (recurring gaps)
+353,STEBBINS AVENUE-HEWITT PLACE,BRONX,whole,29,14,120.0,0.0,0.0,0.0,Fix metering first (recurring gaps)
+246,WEST TREMONT AVENUE-SEDGWICK AVENUE AREA,BRONX,whole,15,13,148.0,0.0,0.0,0.0,Fix metering first (recurring gaps)
+174,WSUR (SITE C) 589 AMSTERDAM AVENUE,MANHATTAN,whole,24,12,158.0,0.0,0.0,0.0,Fix metering first (recurring gaps)
+232,CONLON LIHFE TOWER,QUEENS,whole,29,10,216.0,0.0,0.0,0.0,Fix metering first (recurring gaps)
+100,GOMPERS,MANHATTAN,partial,9,9,474.0,0.0,0.0,0.0,Fix metering first (recurring gaps)
+1,FIRST HOUSES,MANHATTAN,partial,29,7,126.0,0.0,0.0,0.0,Fix metering first (recurring gaps)
+151,WSUR (SITE A) 120 WEST 94TH STREET,MANHATTAN,unknown,5,5,70.0,0.0,0.0,0.0,Monitor
+333,STUYVESANT GARDENS II,BROOKLYN,whole,29,5,150.0,0.0,0.0,0.0,Monitor
+362,LONGFELLOW AVENUE REHAB,BRONX,whole,29,3,75.0,0.0,0.0,0.0,Monitor
+66,SOUTH JAMAICA II,QUEENS,whole,29,0,600.0,0.0,0.0,0.0,Monitor
+67,SOTOMAYOR HOUSES,BRONX,partial,29,0,1497.0,0.0,0.0,0.0,Monitor
+178,WSUR (BROWNSTONES),MANHATTAN,whole,29,0,236.0,0.0,0.0,0.0,Monitor
+192,SEWARD PARK EXTENSION,MANHATTAN,whole,29,0,360.0,0.0,0.0,0.0,Monitor
+225,GLEBE AVENUE-WESTCHESTER AVENUE,BRONX,whole,29,0,132.0,0.0,0.0,0.0,Monitor
+268,THOMAS APARTMENTS,MANHATTAN,whole,29,0,87.0,0.0,0.0,0.0,Monitor
+287,TWIN PARKS EAST (SITE 9),BRONX,whole,29,0,219.0,0.0,0.0,0.0,Monitor
+312,CROWN HEIGHTS,BROOKLYN,whole,11,0,121.0,0.0,0.0,0.0,Monitor
+338,EAST 173RD STREET-VYSE AVENUE,BRONX,whole,29,0,168.0,0.0,0.0,0.0,Monitor
+360,WEST FARMS ROAD REHAB,BRONX,whole,29,0,208.0,0.0,0.0,0.0,Monitor
+367,HUNTS POINT AVENUE REHAB,BRONX,whole,29,0,131.0,0.0,0.0,0.0,Monitor
+368,STERLING PLACE REHABS (STERLING-BUFFALO),BROOKLYN,whole,11,0,125.0,0.0,0.0,0.0,Monitor

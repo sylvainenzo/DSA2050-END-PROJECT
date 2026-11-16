@@ -1,0 +1,9 @@
+subgroup,n,MAE_log_seasonal_naive,MAE_log_persistence,MAE_log_candidate
+borough=BRONX,284,0.141,0.091,0.087
+borough=BROOKLYN,183,0.248,0.168,0.166
+borough=MANHATTAN,319,0.24,0.143,0.143
+borough=QUEENS,141,0.22,0.144,0.141
+borough=STATEN ISLAND,28,0.287,0.243,0.236
+size_group=small,365,0.209,0.111,0.111
+size_group=medium,297,0.149,0.096,0.095
+size_group=large,293,0.276,0.205,0.199

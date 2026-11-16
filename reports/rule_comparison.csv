@@ -1,0 +1,4 @@
+rule,scored_dev_months,flag_rate_%,n_flagged,in_spike_%,base_spike_%,lift,devs_flagged,%_flags_in_largest_third
+A: citywide 5th/95th percentile (same rows),691,12.45,86,19.77,7.67,2.58,13,34.88
+B: residual |z| > 3 (same rows),691,8.39,58,25.86,7.67,3.37,22,10.34
+B: residual |z| > 3 (all developments),955,11.2,107,17.76,7.33,2.42,30,51.4

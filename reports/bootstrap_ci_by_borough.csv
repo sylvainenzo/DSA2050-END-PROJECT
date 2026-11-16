@@ -1,0 +1,6 @@
+borough,developments,pct_gap,gap_ci_low,gap_ci_high,whole_metered_devs,mean_gal_apt_day,ci_low,ci_high
+BRONX,28,29.9,15.8,45.2,20,289.7,231.8,356.5
+BROOKLYN,30,36.7,23.7,51.6,18,218.5,161.4,272.7
+MANHATTAN,34,33.4,21.5,44.8,25,231.0,184.8,280.7
+QUEENS,11,35.2,16.2,58.5,7,189.5,122.1,270.5
+STATEN ISLAND,1,1.5,1.5,1.5,0,,,

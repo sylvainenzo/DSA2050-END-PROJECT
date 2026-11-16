@@ -1,0 +1,14 @@
+Check,Result,Action
+Missing TDS / month / consumption,31 / 0 / 725,C3: drop (749 rows)
+Exact duplicate rows,"4,660",C2: drop
+Same meter-period billed twice,123,C9: keep actual read
+"Borough not one of 5 boroughs (FHA, non-development)","28,475","C4: exclude (26,258 rows after C1-C3)"
+No meter / un-metered accounts,"3,241","C5: exclude (2,498 rows)"
+Sewer-only and fire-service lines,"4,572","C6: exclude (2,611 rows)"
+Billing days <= 0 or > 62,"4,359",C7: drop (898 rows)
+Negative consumption,0,C8: drop (0 rows)
+Zero consumption (clean bills),"1,469",Keep + flag (gap or real shut-off)
+Estimated reads (clean bills),"5,467",Keep + flag; excluded from model target
+Bills not matching Data Book (join),225 rows / 2 developments,Keep; no per-apartment rate
+Partial metering (store/community-centre meter only),29 developments,Keep; excluded from per-apartment comparisons and Rule A
+Extreme high consumption,see Q3,"Keep + investigate (signal, not error)"

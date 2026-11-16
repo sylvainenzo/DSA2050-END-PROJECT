@@ -1,0 +1,10 @@
+split,method,n,MAE_log,RMSE_log,MAE_hcf_day,MedAPE_%
+train,Baseline 1: seasonal naive (same month last year),4680,0.232,0.406,9.402,15.014
+train,Baseline 2: persistence (last actual month),4680,0.113,0.236,5.121,6.694
+train,Candidate: gradient boosting correction to persistence,4680,0.1,0.225,4.621,5.365
+valid,Baseline 1: seasonal naive (same month last year),501,0.231,0.427,6.895,14.316
+valid,Baseline 2: persistence (last actual month),501,0.129,0.306,4.44,6.684
+valid,Candidate: gradient boosting correction to persistence,501,0.127,0.3,4.38,7.067
+test,Baseline 1: seasonal naive (same month last year),955,0.211,0.363,8.56,14.985
+test,Baseline 2: persistence (last actual month),955,0.135,0.288,5.603,7.431
+test,Candidate: gradient boosting correction to persistence,955,0.133,0.283,5.398,7.42

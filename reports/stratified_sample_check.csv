@@ -1,0 +1,3 @@
+design,devs_per_sample,gap_%_full,gap_%_mean,gap_%_95%_range,median_gal_full,median_gal_mean,median_gal_95%_range
+simple random,26,33.4,33.9,22.0 - 47.2,202.6,205.6,156 - 276
+stratified by borough,26,33.4,32.5,20.5 - 44.5,202.6,205.2,155 - 270

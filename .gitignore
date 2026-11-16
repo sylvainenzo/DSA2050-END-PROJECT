@@ -1,0 +1,19 @@
+# data (rebuild with: python src/download_data.py)
+data/raw/
+data/processed/
+*.db
+*.sqlite
+
+# python / jupyter
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+.env
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

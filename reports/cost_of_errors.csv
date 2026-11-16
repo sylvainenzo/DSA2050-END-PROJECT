@@ -1,0 +1,10 @@
+item,value
+"USD per HCF (water + sewer, train years)",9.637
+"High-use flags in test period (Rule B, operating k=4.5)",26.0
+"Excess water, all flags, HCF",40454.548
+"Value of excess water, all flags, USD",389848.876
+"Value excluding the single largest flag, USD (robustness)",128022.566
+"Median value per flag, USD",3057.246
+"Inspection cost if every flag is visited, USD (assumption)",10400.0
+Break-even share of flags that must be real (all flags),0.027
+Break-even share excluding the largest flag,0.081

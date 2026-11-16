@@ -1,0 +1,10 @@
+rule,rows_before,rows_after,rows_removed,reason
+C1 standardise types,66432,66432,0,"Convert numbers/dates, upper-case text, fill missing days from service dates"
+C2 drop exact duplicates,66432,61772,4660,Identical rows add no information and double-count water
+C3 drop missing key fields,61772,61023,749,"No month, no development ID or no consumption value"
+C4 keep five boroughs,61023,34765,26258,"'FHA' repossessed houses are scattered homes, not a development zone"
+C5 drop accounts with no meter,34765,32267,2498,Flat-rate / multifamily / commercial accounts with no meter: consumption is not measured
+C6 drop sewer-only and fire-service lines,32267,29656,2611,Sewer charge lines repeat a water meter with zero use; fire lines are not consumption
+C7 drop invalid billing periods,29656,28758,898,<=0 days are errors; >62 days are quarterly/catch-up bills spanning 3+ months that cannot be placed in one month
+C8 drop negative consumption,28758,28758,0,"Credits/reversals are accounting entries, not water use"
+C9 de-duplicate meter-period bills,28758,28635,123,Same meter and period billed twice: keep actual read over estimate
