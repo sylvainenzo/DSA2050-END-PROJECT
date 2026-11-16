@@ -65,9 +65,9 @@ requirements.txt, .gitignore, CONTRIBUTIONS.md
 ## Roles
 | Member | Role | Main files |
 |---|---|---|
-| Member 1 | Data & SQL lead | `src/download_data.py`, `sql/queries.sql`, notebook 01 |
-| Member 2 | EDA & uncertainty lead | notebook 02, figures, interim memo |
-| Member 3 | Modelling & evaluation lead | notebook 03, A/B-test protocol |
+| ENZO | Data & SQL lead | `src/download_data.py`, `sql/queries.sql`, notebook 01 |
+| Victor | EDA & uncertainty lead | notebook 02, figures, interim memo |
+| Whitney| Modelling & evaluation lead | notebook 03, A/B-test protocol |
 | All | Report, slides, decisions log, review of each other's notebooks | `docs/`, `reports/`, `slides/` |
 
 ## AI assistance
