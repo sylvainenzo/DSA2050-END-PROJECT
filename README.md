@@ -70,5 +70,4 @@ requirements.txt, .gitignore, CONTRIBUTIONS.md
 | Whitney| Modelling & evaluation lead | notebook 03, A/B-test protocol |
 | All | Report, slides, decisions log, review of each other's notebooks | `docs/`, `reports/`, `slides/` |
 
-## AI assistance
-Declared in `CONTRIBUTIONS.md`. Every generated statement, calculation and code block was run and checked by the team.
+
